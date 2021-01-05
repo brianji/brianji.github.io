@@ -75,6 +75,7 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -104,16 +105,18 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
             ],
           ),
           SizedBox(height: 16),
-          FadeTransition(
-            opacity: _curvedAnimation,
-            child: _BlurShadowed(
-              blur: 16,
-              opacity: 1,
-              child: Container(
-                constraints: BoxConstraints(maxWidth: 200, maxHeight: 200),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(image: AssetImage('images/me.jpg')),
+          Flexible(
+            child: FadeTransition(
+              opacity: _curvedAnimation,
+              child: _BlurShadowed(
+                blur: 16,
+                opacity: 1,
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 200, maxHeight: 200),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(image: AssetImage('images/me.jpg')),
+                  ),
                 ),
               ),
             ),
@@ -155,6 +158,7 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
               ),
             ),
           ),
+          SizedBox(height: 8),
         ],
       ),
     );
