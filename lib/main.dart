@@ -76,13 +76,13 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              StreamBuilder<String>(
-                initialData: '',
-                stream: _name,
-                builder: (context, snapshot) => _BlurShadowed(
+          StreamBuilder<String>(
+            initialData: '',
+            stream: _name,
+            builder: (context, snapshot) => Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _BlurShadowed(
                   blur: 8,
                   opacity: 0.5,
                   child: Text(
@@ -90,19 +90,20 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
                     style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
-              ),
-              FadeTransition(
-                opacity: _cursorAnimation,
-                child: _BlurShadowed(
-                  blur: 4,
-                  opacity: 0.5,
-                  child: Text(
-                    '|',
-                    style: Theme.of(context).textTheme.headline3,
+                if (!snapshot.data.contains('n'))
+                  FadeTransition(
+                    opacity: _cursorAnimation,
+                    child: _BlurShadowed(
+                      blur: 4,
+                      opacity: 0.5,
+                      child: Text(
+                        '|',
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
           SizedBox(height: 16),
           Flexible(
