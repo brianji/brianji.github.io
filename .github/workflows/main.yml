@@ -12,9 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          git clone https://github.com/flutter/flutter.git -b beta $HOME/flutter
+          git clone https://github.com/flutter/flutter.git -b stable --depth 1 $HOME/flutter
           export PATH="$PATH:$HOME/flutter/bin"
-          flutter config --enable-web
           flutter build web
       - run: |
           cd build/web
