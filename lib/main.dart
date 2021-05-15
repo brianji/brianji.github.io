@@ -82,24 +82,16 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
             builder: (context, snapshot) => Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _BlurShadowed(
-                  blur: 8,
-                  opacity: 0.5,
-                  child: Text(
-                    snapshot.data,
-                    style: Theme.of(context).textTheme.headline3,
-                  ),
+                Text(
+                  snapshot.data,
+                  style: Theme.of(context).textTheme.headline3,
                 ),
                 if (!snapshot.data.contains('n'))
                   FadeTransition(
                     opacity: _cursorAnimation,
-                    child: _BlurShadowed(
-                      blur: 4,
-                      opacity: 0.5,
-                      child: Text(
-                        '|',
-                        style: Theme.of(context).textTheme.headline3,
-                      ),
+                    child: Text(
+                      '|',
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
               ],
@@ -109,15 +101,11 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
           Flexible(
             child: FadeTransition(
               opacity: _curvedAnimation,
-              child: _BlurShadowed(
-                blur: 16,
-                opacity: 1,
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: 200, maxHeight: 200),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(image: AssetImage('images/me.jpg')),
-                  ),
+              child: Container(
+                constraints: BoxConstraints(maxWidth: 200, maxHeight: 200),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: AssetImage('images/me.jpg')),
                 ),
               ),
             ),
@@ -130,27 +118,27 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
               child: ButtonBar(
                 alignment: MainAxisAlignment.center,
                 children: [
-                  _ShadowIconButton(
+                  _IconButton(
                     url: 'mailto:brianji@umd.edu',
                     tooltip: 'Email',
                     icon: MdiIcons.email,
                   ),
-                  _ShadowIconButton(
+                  _IconButton(
                     url: 'https://github.com/brianji',
                     tooltip: 'GitHub',
                     icon: MdiIcons.github,
                   ),
-                  _ShadowIconButton(
+                  _IconButton(
                     url: 'https://linkedin.com/in/brianji',
                     tooltip: 'LinkedIn',
                     icon: MdiIcons.linkedin,
                   ),
-                  _ShadowIconButton(
+                  _IconButton(
                     url: 'https://instagram.com/brianji3',
                     tooltip: 'Instagram',
                     icon: MdiIcons.instagram,
                   ),
-                  _ShadowIconButton(
+                  _IconButton(
                     url: 'https://twitter.com/isgy',
                     tooltip: 'Twitter',
                     icon: MdiIcons.twitter,
@@ -184,49 +172,20 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
   }
 }
 
-class _ShadowIconButton extends StatelessWidget {
+class _IconButton extends StatelessWidget {
   final String tooltip;
   final IconData icon;
   final String url;
 
-  const _ShadowIconButton({Key key, this.tooltip, this.icon, this.url})
+  const _IconButton({Key key, this.tooltip, this.icon, this.url})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return _BlurShadowed(
-      blur: 4,
-      opacity: 0.4,
-      child: IconButton(
-        tooltip: tooltip,
-        onPressed: () => launch(url),
-        icon: Icon(icon),
-      ),
-    );
-  }
-}
-
-class _BlurShadowed extends StatelessWidget {
-  final double blur;
-  final double opacity;
-  final Widget child;
-
-  const _BlurShadowed({Key key, this.blur, this.opacity, this.child})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Opacity(
-          opacity: opacity,
-          child: ImageFiltered(
-            imageFilter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-            child: IgnorePointer(child: child),
-          ),
-        ),
-        child,
-      ],
+    return IconButton(
+      tooltip: tooltip,
+      onPressed: () => launch(url),
+      icon: Icon(icon),
     );
   }
 }
