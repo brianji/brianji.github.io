@@ -138,11 +138,6 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
                     tooltip: 'Instagram',
                     icon: MdiIcons.instagram,
                   ),
-                  _IconButton(
-                    url: 'https://twitter.com/isgy',
-                    tooltip: 'Twitter',
-                    icon: MdiIcons.twitter,
-                  ),
                 ],
               ),
             ),
