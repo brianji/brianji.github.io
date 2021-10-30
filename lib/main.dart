@@ -25,14 +25,14 @@ class _HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
-  Stream<String> _name;
+  late Stream<String> _name;
 
-  AnimationController _transitionController;
-  Animation<double> _curvedAnimation;
-  Animation<Offset> _offsetAnimation;
+  late AnimationController _transitionController;
+  late Animation<double> _curvedAnimation;
+  late Animation<Offset> _offsetAnimation;
 
-  AnimationController _cursorController;
-  Animation<double> _cursorAnimation;
+  late AnimationController _cursorController;
+  late Animation<double> _cursorAnimation;
 
   @override
   void initState() {
@@ -83,10 +83,10 @@ class _HomePageState extends State<_HomePage> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  snapshot.data,
+                  snapshot.data ?? '',
                   style: Theme.of(context).textTheme.headline3,
                 ),
-                if (!snapshot.data.contains('n'))
+                if (!(snapshot.data ?? '').contains('n'))
                   FadeTransition(
                     opacity: _cursorAnimation,
                     child: Text(
@@ -172,8 +172,12 @@ class _IconButton extends StatelessWidget {
   final IconData icon;
   final String url;
 
-  const _IconButton({Key key, this.tooltip, this.icon, this.url})
-      : super(key: key);
+  const _IconButton({
+    Key? key,
+    required this.tooltip,
+    required this.icon,
+    required this.url,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
