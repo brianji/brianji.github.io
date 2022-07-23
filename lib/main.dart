@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -178,7 +177,7 @@ class _IconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       tooltip: tooltip,
-      onPressed: () => launch(url),
+      onPressed: () => launchUrl(Uri.parse(url)),
       icon: Icon(icon),
     );
   }
